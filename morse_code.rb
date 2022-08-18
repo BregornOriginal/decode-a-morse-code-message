@@ -1,18 +1,17 @@
 def decode_char(code_morse)
-  morse_array = ['·-', '–···', '–·–·', '–··', '·', '··–·', '––·', '····', '··', '·–––',
-                 '–·–', '·–··', '--', '–·', '---', '·––·', '––·–', '·–·', '···', '-', '··–', '···–',
-                 '·––', '–·––', '––··']
-  char_array = %w[a b c d e f g h i j k l m n
-                  o p q r s t u v x y z]
-  word_decoded = []
-
-  idx_code_morse = morse_array.find_index(code_morse)
-  char_array[idx_code_morse].upcase
+  hash_of_letters = { '·-': 'A', '–···': 'B', '–·–·': 'C', '–··': 'D', '·': 'E',
+                  '··–·': 'F', '––·': 'G', '····': 'H', '··': 'I', '·–––': 'J', '–·–': 'K',
+                  '·–··': 'L', '--': 'M', '–·': 'N', '---': 'O', '·––·': 'P', '––·–': 'Q',
+                  '·–·': 'R', '···': 'S', '-': 'T', '··–': 'U', '···–': 'V', '·––': 'X',
+                  '–·––': 'Y', '––··': 'Z' }
+                  hash_of_letters[code_morse]
 end
 
 def decode_word(word)
+  word = ''
   array_of_letters = word.split(/ /)
-  puts array_of_letters.map { |letter| decode_char(letter) }
+  (array_of_letters.each { |letter| word += decode_char(letter) })
+  word
 end
 
-decode_word('-- –··· –·–·')
+puts decode_word('-- –··· –·–·')
